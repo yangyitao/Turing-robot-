@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="wscat">
+	<head>
+		<meta charset="utf-8" />
+		<title>做图灵机器人angular</title>
+	</head>
+	<script src="js/angular.js"></script>
+	<body ng-controller="indextCtrl">
+		<div >
+			<input ng-model="ask" ng-keyup="answer()">
+			<p>{{message}}</p>
+		</div>
+	</body>
+	<script>
+		var app=angular.module("wscat",[]);
+		app.controller("indextCtrl",function($scope,$http){
+			//	alert("yytt");
+			$scope.name="abc";
+			$scope.answer=function(){
+			
+				$http.get("http://www.tuling123.com/openapi/api?key=c75ba576f50ddaa5fd2a87615d144ecf&info="+$scope.ask).success(
+					function(data){
+					console.log(data);
+					$scope.message=data.text;
+				})
+				
+			}
+		})
+	</script>
+</html>
